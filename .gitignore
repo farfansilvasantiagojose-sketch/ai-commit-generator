@@ -1,0 +1,22 @@
+# Archivos de entorno virtual (si alguna vez se usa localmente)
+venv/
+.venv/
+env/
+.env
+
+# Archivos de caché de Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Archivos de Docker
+.dockerignore
+
+# Archivos de configuración de IDEs
+.idea/
+.vscode/
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db

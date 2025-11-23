@@ -4,12 +4,10 @@ import google.generativeai as genai
 
 
 # --- Definición de la Abstracción (La "Interfaz") ---
-# ESTA PARTE NO CAMBIA NADA
 class BaseLLMService(ABC):
     """
-    Clase base abstracta (como un contrato o una plantilla)
-    para cualquier servicio de LLM que queramos implementar.
-    Define qué métodos DEBEN tener todas las clases hijas.
+    Clase base abstracta
+    para cualquier servicio de LLM que quiera implementar.
     """
 
     @abstractmethod
@@ -20,7 +18,7 @@ class BaseLLMService(ABC):
         pass
 
 
-# --- Implementación Concreta para Google Gemini (¡LA NUEVA CLASE!) ---
+# --- Implementación Concreta para Google Gemini
 class GoogleLLMService(BaseLLMService):
     """
     Una implementación de BaseLLMService que usa la API de Google Gemini.
@@ -68,11 +66,6 @@ class GoogleLLMService(BaseLLMService):
             response = self.model.generate_content(prompt)
             return response.text.strip()
         except Exception as e:
-            # La API de Google puede devolver errores más complejos, los mostramos
+            # La API de Google puede devolver errores más complejos
             return f"Error al contactar la API de Google: {e}"
 
-# --- Antigua Implementación de OpenAI (Opcional: la puedes borrar o dejar) ---
-# La dejaremos aquí para demostrar que el código es extensible.
-# from openai import OpenAI
-# class OpenAILLMService(BaseLLMService):
-#     ... (todo el código antiguo de OpenAI)

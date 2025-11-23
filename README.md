@@ -1,4 +1,6 @@
-Autor Santiago farfan
+Autor: Creado por Santiago jose farfan silva 
+
+
 # 🤖 Generador de Mensajes de Commit con IA
 
 Este es un proyecto de herramienta de línea de comandos (CLI) que utiliza un LLM (a través de la API de Google Gemini) para generar automáticamente mensajes de commit siguiendo el estándar de **Conventional Commits**.
@@ -26,7 +28,7 @@ El proyecto está completamente **dockerizado**, garantizando un entorno de desa
     ```
 
 2.  **Crea tu archivo de entorno:**
-    En la raíz del proyecto, crea un archivo llamado `.env`.
+    En la raíz del proyecto, crea un archivo llamado `.env`. con  `nano .env`
 
 3.  **Añade tu API Key de Google:**
     Abre el archivo `.env` y añade tu clave secreta de Google Gemini y la configuración de GitPython:
@@ -38,7 +40,7 @@ El proyecto está completamente **dockerizado**, garantizando un entorno de desa
 4.  **Construye la imagen de Docker:**
     Este comando leerá el `Dockerfile` y `requirements.txt` para construir el entorno de la aplicación. Solo necesitas hacerlo la primera vez o cuando cambies las dependencias.
     ```bash
-    docker-compose build
+    
     ```
 
 ## 🛠️ Cómo Usarlo
@@ -70,3 +72,35 @@ El código está estructurado para ser mantenible y fácil de entender:
 -   `src/services/git_service.py`: Tiene la **única responsabilidad** de interactuar con Git.
 -   `src/services/llm_service.py`: Tiene la **única responsabilidad** de comunicarse con el LLM. Utiliza una clase base abstracta para que sea **abierto a extensión** (se podría volver a añadir soporte para OpenAI) pero **cerrado a modificación**.
 -   `src/main.py`: Es el orquestador que depende de las **abstracciones** de los servicios, no de sus implementaciones concretas.
+
+## 🚀 Flujo de Trabajo Diario
+Una vez configurado, este es el ciclo de uso normal cada vez que realices cambios en tu código.
+
+1.  **Realiza cambios en tu código** como lo harías normalmente (editar archivos `.py`, `.md`, etc.).
+
+2.  **Prepara tus cambios para el commit** añadiéndolos al "staging area" de Git:
+    ```bash
+    git add .
+    ```
+
+3.  **Ejecuta la herramienta** para generar el mensaje de commit:
+    ```bash
+    docker-compose run --rm app python src/main.py
+    ```
+
+4.  **Copia el mensaje sugerido** por la IA desde la terminal.
+
+5.  **Usa el mensaje para hacer el commit:**
+    ```bash
+    git commit -m "Pega aquí el mensaje que copiaste"
+    ```
+
+6.  **Sube tus cambios a GitHub:**
+    ```bash
+    git push
+    ```
+
+---
+> **⚠️ Nota sobre Errores de Red de Docker:**
+> Si al ejecutar el comando `docker-compose run...` recibes un error sobre que la red "needs to be recreated", simplemente ejecuta `docker-compose down`
+> primero para limpiar el entorno y luego vuelve a intentar el comando `run`. Esto no debería ser necesario en cada ejecución.

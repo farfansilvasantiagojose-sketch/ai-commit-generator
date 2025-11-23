@@ -1,3 +1,4 @@
+Autor Santiago farfan
 # 🤖 Generador de Mensajes de Commit con IA
 
 Este es un proyecto de herramienta de línea de comandos (CLI) que utiliza un LLM (a través de la API de Google Gemini) para generar automáticamente mensajes de commit siguiendo el estándar de **Conventional Commits**.
